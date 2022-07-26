@@ -1,0 +1,8 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/01eda2cb-164e-4bcd-84ab-e2fa89c5ada5/resourceGroups/FaneroAtelier/providers/Microsoft.Web/sites/fanerotienda",
+    "appService.deploySubpath": "dist\\Fanero-Tienda",
+    "appService.zipIgnorePattern": [
+        "node_modules{,/**}",
+        ".vscode{,/**}"
+    ]
+}
