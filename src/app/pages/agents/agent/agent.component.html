@@ -56,7 +56,7 @@
             <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
                 <h3 class="uppercase mb-2">Contact Me</h3>
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Name</mat-label>
+                    <mat-label>Nombre</mat-label>
                     <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
                     <mat-error *ngIf="contactForm.controls.name.errors?.required">Name is required</mat-error>                   
                 </mat-form-field>
@@ -69,18 +69,18 @@
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Phone</mat-label>
+                    <mat-label>Celular</mat-label>
                     <input matInput placeholder="Your Phone" autocomplete="off" formControlName="phone" type="number"> 
                     <mat-error *ngIf="contactForm.controls.phone.errors?.required">Phone is required</mat-error>                 
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Message</mat-label> 
+                    <mat-label>Mensaje</mat-label> 
                     <textarea matInput placeholder="Your Message" formControlName="message" rows="6"></textarea> 
                     <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
                 </mat-form-field>  
                 <div class="text-center">
-                    <button mat-raised-button color="accent" type="submit">Send Email</button>
+                    <button mat-raised-button color="accent" type="submit">Enviar Email</button>
                 </div>
             </form>
 

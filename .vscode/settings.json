@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/0aa951fc-eb59-4001-831d-d6e92ea16672/location/centralus/subscriptions/0aa951fc-eb59-4001-831d-d6e92ea16672/resourceGroups/Dommun/providers/Microsoft.Web/sites/DommunWeb",
+    "appService.deploySubpath": "dist\\browser"
+}

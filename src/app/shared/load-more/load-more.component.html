@@ -1,6 +1,6 @@
 <div id="load-more">
   <div *ngIf="!settings.loadMore.complete">
-      <button *ngIf="!settings.loadMore.start" mat-raised-button color="primary" (click)="startLoad()" class="uppercase">Load More</button>
+      <button *ngIf="!settings.loadMore.start" mat-raised-button color="primary" (click)="startLoad()" class="uppercase">Cargar más</button>
       <mat-spinner *ngIf="settings.loadMore.start"></mat-spinner> 
   </div>
   <mat-chip-list *ngIf="settings.loadMore.complete">
