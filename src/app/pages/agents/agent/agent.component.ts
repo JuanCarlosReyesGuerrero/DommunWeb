@@ -4,13 +4,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MediaChange, MediaObserver } from '@angular/flex-layout';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-import { Subscription } from 'rxjs'; 
+import { Subscription } from 'rxjs';
 import { debounceTime, distinctUntilChanged, filter, map } from 'rxjs/operators';
-import { AppService } from 'src/app/app.service'; 
-import { Settings, AppSettings } from 'src/app/app.settings'; 
-import { Property, Pagination } from 'src/app/app.models'; 
+import { AppService } from 'src/app/app.service';
+import { Settings, AppSettings } from 'src/app/app.settings';
+import { Property, Pagination } from 'src/app/app.models';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { isPlatformBrowser } from '@angular/common';
+import { AppToken } from 'src/app/app.token';
 
 @Component({
   selector: 'app-agent',
@@ -19,13 +20,14 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class AgentComponent implements OnInit {
   private sub: any;
-  public agent:any;
+  public agent: any;
   public agentId: any;
+  public agents;
   @ViewChild('sidenav') sidenav: any;
-  public sidenavOpen:boolean = true;
+  public sidenavOpen: boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
   public psConfig: PerfectScrollbarConfigInterface = {
-    wheelPropagation:true
+    wheelPropagation: true
   };
   public properties: Property[];
   public viewType: string = 'grid';
@@ -34,46 +36,47 @@ export class AgentComponent implements OnInit {
   public sort: string;
   public searchFields: any;
   public removedSearchField: string;
-  public pagination:Pagination = new Pagination(1, this.count, null, 2, 0, 0); 
-  public message:string;
+  public pagination: Pagination = new Pagination(1, this.count, null, 2, 0, 0);
+  public message: string;
   public watcher: Subscription;
   public settings: Settings
   public contactForm: UntypedFormGroup;
 
-  constructor(public appSettings:AppSettings, 
-              public appService:AppService, 
-              private activatedRoute: ActivatedRoute, 
-              public mediaObserver: MediaObserver,
-              public fb: UntypedFormBuilder,
-              @Inject(PLATFORM_ID) private platformId: Object) {
-    this.settings = this.appSettings.settings;    
+  constructor(public appSettings: AppSettings,
+    public appService: AppService,
+    private activatedRoute: ActivatedRoute,
+    public mediaObserver: MediaObserver,
+    public fb: UntypedFormBuilder,
+    public appToken: AppToken,
+    @Inject(PLATFORM_ID) private platformId: Object) {
+    this.settings = this.appSettings.settings;
     this.watcher = mediaObserver.asObservable()
-    .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
-    .subscribe((change: MediaChange) => {
-      if (change.mqAlias == 'xs') {
-        this.sidenavOpen = false;
-        this.viewCol = 100;
-      }
-      else if(change.mqAlias == 'sm'){
-        this.sidenavOpen = false;
-        this.viewCol = 50;
-      }
-      else if(change.mqAlias == 'md'){
-        this.viewCol = 50;
-        this.sidenavOpen = true;
-      }
-      else{
-        this.viewCol = 33.3;
-        this.sidenavOpen = true;
-      }
-    });
+      .pipe(filter((changes: MediaChange[]) => changes.length > 0), map((changes: MediaChange[]) => changes[0]))
+      .subscribe((change: MediaChange) => {
+        if (change.mqAlias == 'xs') {
+          this.sidenavOpen = false;
+          this.viewCol = 100;
+        }
+        else if (change.mqAlias == 'sm') {
+          this.sidenavOpen = false;
+          this.viewCol = 50;
+        }
+        else if (change.mqAlias == 'md') {
+          this.viewCol = 50;
+          this.sidenavOpen = true;
+        }
+        else {
+          this.viewCol = 33.3;
+          this.sidenavOpen = true;
+        }
+      });
   }
 
   ngOnInit() {
-    this.sub = this.activatedRoute.params.subscribe(params => { 
-      
+    this.sub = this.activatedRoute.params.subscribe(params => {
+
       this.agentId = params['id'];
-      this.getAgentById(params['id']); 
+      this.getAgentById(params['id']);
       this.getProperties();
     });
 
@@ -83,104 +86,111 @@ export class AgentComponent implements OnInit {
       phone: ['', Validators.required],
       message: ['', Validators.required]
     });
-    
+
   }
 
   ngOnDestroy() {
     this.sub.unsubscribe();
     this.watcher.unsubscribe();
-  } 
-
-  public getAgentById(id){
-    this.agent = this.appService.getAgents().filter(agent=> agent.id == id)[0]; 
   }
-   
 
-  public getProperties(){   
-    this.appService.getPropertiesByAgentId(this.agentId).subscribe(data => { 
-      let result = this.filterData(data); 
-      if(result.data.length == 0){
+  public getAgentById(id) {
+    
+    this.appToken.getToken();
+
+    this.appService.getAgent(id).subscribe((objRespuesta) => {
+      this.agents = objRespuesta.data;
+      console.log(this.agents);
+    });
+
+  }
+
+
+  public getProperties() {
+    this.appService.getPropertiesByAgentId(this.agentId).subscribe(data => {
+      let result = this.filterData(data);
+      if (result.data.length == 0) {
         this.properties.length = 0;
-        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);  
+        this.pagination = new Pagination(1, this.count, null, 2, 0, 0);
         this.message = 'No Results Found';
         return false;
-      } 
-      this.properties = result.data; 
+      }
+      this.properties = result.data;
       this.pagination = result.pagination;
       this.message = null;
     })
   }
 
-  public resetPagination(){ 
-    if(this.paginator){
+  public resetPagination() {
+    if (this.paginator) {
       this.paginator.pageIndex = 0;
     }
     this.pagination = new Pagination(1, this.count, null, null, this.pagination.total, this.pagination.totalPages);
   }
 
-  public filterData(data){
+  public filterData(data) {
     return this.appService.filterData(data, this.searchFields, this.sort, this.pagination.page, this.pagination.perPage);
   }
 
-  public searchClicked(){ 
+  public searchClicked() {
     this.properties.length = 0;
-    this.getProperties(); 
+    this.getProperties();
     if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo(0,0);
-    }  
+      window.scrollTo(0, 0);
+    }
   }
-  public searchChanged(event){
-    event.valueChanges.subscribe(() => {   
-      this.resetPagination(); 
+  public searchChanged(event) {
+    event.valueChanges.subscribe(() => {
+      this.resetPagination();
       this.searchFields = event.value;
-      setTimeout(() => {      
+      setTimeout(() => {
         this.removedSearchField = null;
       });
-      if(!this.settings.searchOnBtnClick){     
-        this.properties.length = 0;  
-      }            
-    }); 
-    event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => { 
-      if(!this.settings.searchOnBtnClick){     
-        this.getProperties(); 
+      if (!this.settings.searchOnBtnClick) {
+        this.properties.length = 0;
       }
-    });       
-  } 
-  public removeSearchField(field){ 
-    this.message = null;   
-    this.removedSearchField = field; 
-  } 
+    });
+    event.valueChanges.pipe(debounceTime(500), distinctUntilChanged()).subscribe(() => {
+      if (!this.settings.searchOnBtnClick) {
+        this.getProperties();
+      }
+    });
+  }
+  public removeSearchField(field) {
+    this.message = null;
+    this.removedSearchField = field;
+  }
 
 
-  public changeCount(count){
-    this.count = count;   
+  public changeCount(count) {
+    this.count = count;
     this.properties.length = 0;
     this.resetPagination();
     this.getProperties();
   }
-  public changeSorting(sort){    
-    this.sort = sort; 
+  public changeSorting(sort) {
+    this.sort = sort;
     this.properties.length = 0;
     this.getProperties();
   }
-  public changeViewType(obj){ 
+  public changeViewType(obj) {
     this.viewType = obj.viewType;
-    this.viewCol = obj.viewCol; 
-  } 
+    this.viewCol = obj.viewCol;
+  }
 
 
-  public onPageChange(e){ 
+  public onPageChange(e) {
     this.pagination.page = e.pageIndex + 1;
     this.getProperties();
     if (isPlatformBrowser(this.platformId)) {
-      window.scrollTo(0,0);
-    }  
+      window.scrollTo(0, 0);
+    }
   }
 
-  public onContactFormSubmit(values:Object){
-    if (this.contactForm.valid) { 
+  public onContactFormSubmit(values: Object) {
+    if (this.contactForm.valid) {
       console.log(values);
-    } 
+    }
   }
 
 }

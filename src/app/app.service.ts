@@ -1,5 +1,5 @@
 import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { MatBottomSheet } from '@angular/material/bottom-sheet';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -11,6 +11,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent, ConfirmDialogModel } from './shared/confirm-dialog/confirm-dialog.component';
 import { AlertDialogComponent } from './shared/alert-dialog/alert-dialog.component';
 import { TranslateService } from '@ngx-translate/core';
+import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
 
 export class Data {
   constructor(public properties: Property[],
@@ -32,6 +33,9 @@ export class AppService {
 
   public url = environment.url + '/assets/data/';
   public apiKey = 'AIzaSyAO7Mg2Cs1qzo_3jkKkZAKY6jtwIlm41-I';
+
+  public objAgentes: any
+  public agents;
 
   constructor(
     public http: HttpClient,
@@ -548,101 +552,137 @@ export class AppService {
     ];
   }
 
-  public getAgents() {
-    return [
-      {
-        id: 1,
-        fullName: 'Lusia Manuel',
-        desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
-        organization: 'HouseKey',
-        email: 'lusia.m@housekey.com',
-        phone: '(224) 267-1346',
-        social: {
-          facebook: 'lusia',
-          twitter: 'lusia',
-          linkedin: 'lusia',
-          instagram: 'lusia',
-          website: 'https://lusia.manuel.com'
-        },
-        ratingsCount: 6,
-        ratingsValue: 480,
-        image: 'assets/images/agents/a-1.jpg'
-      },
-      {
-        id: 2,
-        fullName: 'Andy Warhol',
-        desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
-        organization: 'HouseKey',
-        email: 'andy.w@housekey.com',
-        phone: '(212) 457-2308',
-        social: {
-          facebook: '',
-          twitter: '',
-          linkedin: '',
-          instagram: '',
-          website: 'https://andy.warhol.com'
-        },
-        ratingsCount: 4,
-        ratingsValue: 400,
-        image: 'assets/images/agents/a-2.jpg'
-      },
-      {
-        id: 3,
-        fullName: 'Tereza Stiles',
-        desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
-        organization: 'HouseKey',
-        email: 'tereza.s@housekey.com',
-        phone: '(214) 617-2614',
-        social: {
-          facebook: '',
-          twitter: '',
-          linkedin: '',
-          instagram: '',
-          website: 'https://tereza.stiles.com'
-        },
-        ratingsCount: 4,
-        ratingsValue: 380,
-        image: 'assets/images/agents/a-3.jpg'
-      },
-      {
-        id: 4,
-        fullName: 'Michael Blair',
-        desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
-        organization: 'HouseKey',
-        email: 'michael.b@housekey.com',
-        phone: '(267) 388-1637',
-        social: {
-          facebook: '',
-          twitter: '',
-          linkedin: '',
-          instagram: '',
-          website: 'https://michael.blair.com'
-        },
-        ratingsCount: 6,
-        ratingsValue: 480,
-        image: 'assets/images/agents/a-4.jpg'
-      },
-      {
-        id: 5,
-        fullName: 'Michelle Ormond',
-        desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
-        organization: 'HouseKey',
-        email: 'michelle.o@housekey.com',
-        phone: '(267) 388-1637',
-        social: {
-          facebook: '',
-          twitter: '',
-          linkedin: '',
-          instagram: '',
-          website: 'https://michelle.ormond.com'
-        },
-        ratingsCount: 6,
-        ratingsValue: 480,
-        image: 'assets/images/agents/a-5.jpg'
-      }
-    ];
+
+
+
+
+  public getAgents(): Observable<any> {
+
+    let auth_token = localStorage.getItem("jwt");
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + auth_token
+    });
+
+    const requestOptions = { headers: headers };
+
+    return this.http.get('https://localhost:7207/api/Agente/GetAllAgentes', requestOptions);
   }
 
+
+  public getAgent(id): Observable<any> {
+
+    let auth_token = localStorage.getItem("jwt");
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + auth_token
+    });
+
+    const requestOptions = { headers: headers };
+
+    return this.http.get('https://localhost:7207/api/Agente/GetAgente?Id=' + id, requestOptions);
+  }
+
+
+
+  /*
+    public getAgents() {
+      return [
+        {
+          id: 1,
+          fullName: 'Lusia Manuel',
+          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+          organization: 'HouseKey',
+          email: 'lusia.m@housekey.com',
+          phone: '(224) 267-1346',
+          social: {
+            facebook: 'lusia',
+            twitter: 'lusia',
+            linkedin: 'lusia',
+            instagram: 'lusia',
+            website: 'https://lusia.manuel.com'
+          },
+          ratingsCount: 6,
+          ratingsValue: 480,
+          image: 'assets/images/agents/a-1.jpg'
+        },
+        {
+          id: 2,
+          fullName: 'Andy Warhol',
+          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+          organization: 'HouseKey',
+          email: 'andy.w@housekey.com',
+          phone: '(212) 457-2308',
+          social: {
+            facebook: '',
+            twitter: '',
+            linkedin: '',
+            instagram: '',
+            website: 'https://andy.warhol.com'
+          },
+          ratingsCount: 4,
+          ratingsValue: 400,
+          image: 'assets/images/agents/a-2.jpg'
+        },
+        {
+          id: 3,
+          fullName: 'Tereza Stiles',
+          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+          organization: 'HouseKey',
+          email: 'tereza.s@housekey.com',
+          phone: '(214) 617-2614',
+          social: {
+            facebook: '',
+            twitter: '',
+            linkedin: '',
+            instagram: '',
+            website: 'https://tereza.stiles.com'
+          },
+          ratingsCount: 4,
+          ratingsValue: 380,
+          image: 'assets/images/agents/a-3.jpg'
+        },
+        {
+          id: 4,
+          fullName: 'Michael Blair',
+          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+          organization: 'HouseKey',
+          email: 'michael.b@housekey.com',
+          phone: '(267) 388-1637',
+          social: {
+            facebook: '',
+            twitter: '',
+            linkedin: '',
+            instagram: '',
+            website: 'https://michael.blair.com'
+          },
+          ratingsCount: 6,
+          ratingsValue: 480,
+          image: 'assets/images/agents/a-4.jpg'
+        },
+        {
+          id: 5,
+          fullName: 'Michelle Ormond',
+          desc: 'Phasellus sed metus leo. Donec laoreet, lacus ut suscipit convallis, erat enim eleifend nulla, at sagittis enim urna et lacus.',
+          organization: 'HouseKey',
+          email: 'michelle.o@housekey.com',
+          phone: '(267) 388-1637',
+          social: {
+            facebook: '',
+            twitter: '',
+            linkedin: '',
+            instagram: '',
+            website: 'https://michelle.ormond.com'
+          },
+          ratingsCount: 6,
+          ratingsValue: 480,
+          image: 'assets/images/agents/a-5.jpg'
+        }
+      ];
+    }
+  */
 
 
   public getClients() {

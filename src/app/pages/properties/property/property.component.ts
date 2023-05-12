@@ -204,7 +204,7 @@ export class PropertyComponent implements OnInit {
   public getAgent(agentId:number = 1){
     var ids = [1,2,3,4,5]; //agent ids 
     agentId = ids[Math.floor(Math.random()*ids.length)]; //random agent id
-    this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0]; 
+    //this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0]; 
   }
 
   public onContactFormSubmit(values:Object){
