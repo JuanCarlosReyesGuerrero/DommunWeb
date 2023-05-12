@@ -90,7 +90,7 @@
         <div fxFlex="100" class="px-2">
           <mat-form-field appearance="outline" class="w-100">
               <mat-icon matPrefix class="mr-1 text-muted">location_on</mat-icon>
-              <mat-label>Location</mat-label>
+              <mat-label>Ubicación</mat-label>
               <input matInput placeholder="Enter a location" formControlName="location" autocomplete="off" #addressAutocomplete> 
               <button *ngIf="submitForm.get('address')['controls'].location.value" mat-button matSuffix mat-icon-button (click)="submitForm.get('address')['controls'].location.setValue(null)" type="button">
                 <mat-icon>close</mat-icon>
@@ -270,7 +270,7 @@
         </div>
     
         <div fxFlex="100" fxLayoutAlign="start center" class="my-3 px-2"> 
-            <p class="uppercase fw-500 mb-0">Plans</p>                            
+            <p class="uppercase fw-500 mb-0">Planos</p>                            
             <button type="button" mat-icon-button color="primary" (click)="addPlan()" matTooltip="Add New Plan" matTooltipPosition="after" class="mx-3">
                 <mat-icon>add_circle</mat-icon>
             </button>

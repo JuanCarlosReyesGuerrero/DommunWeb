@@ -14,11 +14,11 @@
             <p matLine class="text">{{review.text}}</p>
         </mat-list-item>
     </mat-list>                    
-    <h3 class="mt-3">LEAVE YOUR REVIEW</h3>
+    <h3 class="mt-3">DEJA TU OPINIÓN</h3>
     <div class="divider"></div>
-    <p class="mt-3 text-muted">Your email address will not be published. Required fields are marked *</p>
+    <p class="mt-3 text-muted">Su dirección de correo electrónico no será publicada. Los campos obligatorios están marcados *</p>
     <h3 fxLayoutAlign="start center" class="my-3 text-muted">
-        <span>Your Rating:</span>
+        <span>Tu clasificación:</span>
         <button *ngFor="let rating of ratings" mat-icon-button [matTooltip]="rating.title" matTooltipPosition="above" (click)="rate(rating)">
           <mat-icon class="mat-icon-lg" [class.primary-color]="rating.selected">{{rating.icon}}</mat-icon>
         </button>

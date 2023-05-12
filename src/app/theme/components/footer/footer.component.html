@@ -5,8 +5,8 @@
 
             <div fxLayout="column" fxLayout.gt-sm="row wrap" fxLayoutAlign="center center" class="content border-lighter py-5">
                 <div fxFlex="100" fxFlex.gt-sm="40" fxLayout="column" fxLayoutAlign="center center"> 
-                    <h2 class="uppercase">Subscribe our Newsletter</h2>
-                    <p class="desc mb-1">Stay up to date with our latest news and properties</p>
+                    <h2 class="uppercase">Suscríbete a nuestra Newsletter</h2>
+                    <p class="desc mb-1">Manténgase al día con nuestras últimas noticias y propiedades</p>
                 </div>
                 <form [formGroup]="subscribeForm" (ngSubmit)="onSubscribeFormSubmit(subscribeForm.value)" class="custom-form" fxLayout="row" fxFlex="100" fxFlex.gt-sm="42.4" ngClass.sm="mt-2" ngClass.xs="mt-2">
                     <mat-form-field appearance="outline" floatLabel="always" class="subscribe-input" fxFlex>
@@ -63,7 +63,7 @@
                     </div>
  
                     <div fxFlex="100" fxFlex.gt-sm="30" ngClass.lt-md="pt-5"> 
-                        <h2 class="uppercase mb-3">Our location</h2>
+                        <h2 class="uppercase mb-3">Nuestra ubicación</h2>
                         <agm-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [mapTypeControl]="false" [styles]="mapStyles">
                             <agm-marker [latitude]="lat" [longitude]="lng" [markerDraggable]="false"></agm-marker>
                         </agm-map>
