@@ -9,6 +9,7 @@ import { AppSettings, Settings } from 'src/app/app.settings';
 import { CompareOverviewComponent } from 'src/app/shared/compare-overview/compare-overview.component';
 import { EmbedVideoService } from 'ngx-embed-video'; 
 import { emailValidator } from 'src/app/theme/utils/app-validators';
+import { AppToken } from 'src/app/app.token';
 
 @Component({
   selector: 'app-property',
@@ -34,11 +35,13 @@ export class PropertyComponent implements OnInit {
   public mortgageForm: UntypedFormGroup;
   public monthlyPayment:any;
   public contactForm: UntypedFormGroup;
+
   constructor(public appSettings:AppSettings, 
               public appService:AppService, 
               private activatedRoute: ActivatedRoute, 
               private embedService: EmbedVideoService,
-              public fb: UntypedFormBuilder) {
+              public fb: UntypedFormBuilder,
+              public appToken: AppToken) {
     this.settings = this.appSettings.settings; 
   }
 
@@ -204,7 +207,13 @@ export class PropertyComponent implements OnInit {
   public getAgent(agentId:number = 1){
     var ids = [1,2,3,4,5]; //agent ids 
     agentId = ids[Math.floor(Math.random()*ids.length)]; //random agent id
-    //this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0]; 
+    //this.agent = this.appService.getAgents().filter(agent=> agent.id == agentId)[0];
+    
+    this.appToken.getToken();
+
+    this.appService.getAgent(agentId).subscribe((objRespuesta) => {
+      this.agent = objRespuesta.data;      
+    });
   }
 
   public onContactFormSubmit(values:Object){

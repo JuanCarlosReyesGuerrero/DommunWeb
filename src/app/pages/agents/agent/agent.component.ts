@@ -21,8 +21,7 @@ import { AppToken } from 'src/app/app.token';
 export class AgentComponent implements OnInit {
   private sub: any;
   public agent: any;
-  public agentId: any;
-  public agents;
+  public agentId: any;  
   @ViewChild('sidenav') sidenav: any;
   public sidenavOpen: boolean = true;
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -95,14 +94,12 @@ export class AgentComponent implements OnInit {
   }
 
   public getAgentById(id) {
-    
+        
     this.appToken.getToken();
 
     this.appService.getAgent(id).subscribe((objRespuesta) => {
-      this.agents = objRespuesta.data;
-      console.log(this.agents);
+      this.agent = objRespuesta.data;      
     });
-
   }
 
 
