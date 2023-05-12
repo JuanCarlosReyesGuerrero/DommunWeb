@@ -49,16 +49,16 @@
                                     </a>  
                                 </div>
                                 <div>
-                                    <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">View Profile</a>
+                                    <a [routerLink]="['/agents', agent.id]" mat-button color="primary" class="uppercase">Ver perfil</a>
                                 </div> 
                             </mat-card-actions>                              
                         </mat-card>
                     </div> 
                     
                     <div class="widget">
-                        <h3 class="widget-title bg-primary">Reply to the listing</h3>
+                        <h3 class="widget-title bg-primary">Responder al listado</h3>
                         <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
-                            <p>Interested in renting or buying this property? Then send us an email.</p>
+                            <p>¿Interesado en alquilar o comprar esta propiedad? Entonces envíenos un correo electrónico.</p>
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Name</mat-label>
                                 <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
@@ -90,7 +90,7 @@
                     </div>
                    
                     <div class="widget">
-                        <h3 class="widget-title bg-primary">Mortgage Calculator</h3>
+                        <h3 class="widget-title bg-primary">Calculadora de hipoteca</h3>
                         <form [formGroup]="mortgageForm" (ngSubmit)="onMortgageFormSubmit(mortgageForm.value)">
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>Principal Amount</mat-label>
@@ -110,7 +110,7 @@
                             </mat-form-field>
                             <p *ngIf="monthlyPayment">Monthly Payment: <span class="mx-2 fw-500">${{monthlyPayment}}</span></p>
                             <div class="text-center">
-                                <button mat-raised-button color="accent" type="submit">Calculate Mortgage</button>
+                                <button mat-raised-button color="accent" type="submit">Calcular Hipoteca</button>
                             </div>
                         </form>
                     </div>
@@ -185,7 +185,7 @@
                 
                 <mat-card *ngIf="property" class="mt-3">
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Details</mat-card-title> 
+                        <mat-card-title class="uppercase">Detalles</mat-card-title> 
                     </mat-card-header>
                     <div fxLayout="row wrap" class="details">
                         <div fxFlex="100" fxFlex.gt-xs="50" fxLayout="row" class="item">
@@ -243,7 +243,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Features</mat-card-title> 
+                        <mat-card-title class="uppercase">Características</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <div fxLayout="row wrap">
@@ -257,7 +257,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Additional features</mat-card-title> 
+                        <mat-card-title class="uppercase">Características adicionales</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <div fxLayout="row wrap" class="details">
@@ -271,7 +271,7 @@
 
                 <mat-card class="mt-3"> 
                     <mat-card-header fxLayoutAlign="center center"> 
-                        <mat-card-title class="uppercase">Description</mat-card-title> 
+                        <mat-card-title class="uppercase">Descripción</mat-card-title> 
                     </mat-card-header>
                     <mat-card-content>
                         <p>{{property?.desc}}</p>

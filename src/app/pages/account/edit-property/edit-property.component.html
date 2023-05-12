@@ -20,7 +20,7 @@
     
         <div fxFlex="100" class="px-2">
           <mat-form-field appearance="outline" class="w-100">
-              <mat-label>Description</mat-label> 
+              <mat-label>Descripción</mat-label> 
               <textarea matInput placeholder="Description" formControlName="desc" rows="7"></textarea> 
           </mat-form-field> 
         </div> 
@@ -206,7 +206,7 @@
         </div>
     
         <div fxFlex="100" class="mb-2"> 
-            <p class="uppercase m-2 fw-500">Features</p> 
+            <p class="uppercase m-2 fw-500">Características</p> 
             <div formArrayName="features" fxLayout="row wrap">
                 <div [formGroupName]="i" *ngFor="let control of submitForm.get('additional')['controls'].features['controls']; index as i" class="p-2">
                     <mat-checkbox formControlName="selected">{{features[i].name}}</mat-checkbox>                         
@@ -313,7 +313,7 @@
     
         
         <div fxFlex="100" fxLayoutAlign="start center" class="my-3 px-2"> 
-            <p class="mb-0 uppercase fw-500">Additional features</p>                            
+            <p class="mb-0 uppercase fw-500">Características adicionales</p>                            
             <button type="button" mat-icon-button color="primary" (click)="addFeature()" matTooltip="Add New Feature" matTooltipPosition="after">
                 <mat-icon>add_circle</mat-icon>
             </button>
