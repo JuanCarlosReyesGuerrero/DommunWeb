@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseApi } from '../Interfaces/response-api';
@@ -12,7 +12,6 @@ import { Agente } from '../Interfaces/agente';
 })
 export class AgenteService {
 
-  //private urlApi: string = environment.endpoint + "/api/Agente/GetAllAgentes"
   private urlApi: string = environment.endpoint
 
   constructor(private http: HttpClient) { }
@@ -22,31 +21,11 @@ export class AgenteService {
   }
 
   getAgents(): Observable<ResponseApi> {
-
-    let auth_token = localStorage.getItem("jwt");
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + auth_token
-    });
-
-    const requestOptions = { headers: headers };
-
-    return this.http.get<ResponseApi>(`${this.urlApi}Agente/GetAllAgentes`, requestOptions)
+    return this.http.get<ResponseApi>(`${this.urlApi}Agente/GetAllAgentes`)
   }
 
   getAgent(Id: number): Observable<ResponseApi> {
-
-    let auth_token = localStorage.getItem("jwt");
-
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + auth_token
-    });
-
-    const requestOptions = { headers: headers };
-
-    return this.http.get<ResponseApi>(`${this.urlApi}Agente/GetAgente?Id=${Id}`, requestOptions)
+    return this.http.get<ResponseApi>(`${this.urlApi}Agente/GetAgente?Id=${Id}`)
   }
 
 }

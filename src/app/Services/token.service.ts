@@ -12,6 +12,9 @@ export class TokenService {
   invalidToken: boolean;
   public requestOptions
 
+  private readonly llaveToken = 'jwt';
+  private readonly llaveExpiracion = 'token-expiracion';
+
   private urlApi: string = environment.endpoint
 
   constructor(private http: HttpClient) { }
@@ -26,7 +29,7 @@ export class TokenService {
     this.http.post<ResponseApi>(`${this.urlApi}AuthToken`, credentials)
       .subscribe(response => {
         this.token = (<any>response).token;
-        localStorage.setItem("jwt", this.token);
+        localStorage.setItem(this.llaveToken, this.token);
         this.invalidToken = false;
       }, err => {
         this.invalidToken = true;
@@ -48,4 +51,9 @@ export class TokenService {
 
 
   }
+
+  obtenerToken() {
+    return localStorage.getItem(this.llaveToken)
+  }
+
 }

@@ -12,7 +12,8 @@ export class AgentsComponent implements OnInit {
   public agents;
   invalidToken: boolean;
 
-  constructor(private tokenService: TokenService, private agenteService: AgenteService) { }
+  constructor(private tokenService: TokenService, 
+    private agenteService: AgenteService) { }
 
   ngOnInit() {
 
