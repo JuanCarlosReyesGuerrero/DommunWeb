@@ -33,3 +33,9 @@ export class AgentsComponent implements OnInit {
 
 //https://javadesde0.com/consumiendo-una-api-desde-un-servicio-en-angular/
 //https://codingpotions.com/angular-servicios-llamadas-http
+
+
+/*
+https://medium.com/@insomniocode/angular-autenticaci%C3%B3n-usando-interceptors-a26c167270f4
+https://amoelcodigo.com/interceptor-angular/
+*/
