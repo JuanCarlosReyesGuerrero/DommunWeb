@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { SwiperConfigInterface } from 'ngx-swiper-wrapper';
 import { AppService } from 'src/app/app.service';
+import { TokenService } from 'src/app/Services/token.service';
+import { AgenteService } from 'src/app/Services/agente.service';
 
 @Component({
   selector: 'app-our-agents',
@@ -10,10 +12,17 @@ import { AppService } from 'src/app/app.service';
 export class OurAgentsComponent implements OnInit {
   public agents;
   public config: SwiperConfigInterface = { };
-  constructor(public appService:AppService) { }
+  constructor(public appService:AppService,
+    private tokenService: TokenService, 
+    private agenteService: AgenteService) { }
 
-  ngOnInit() {
-    this.agents = this.appService.getAgents();
+  ngOnInit() {   
+
+    this.tokenService.getToken();
+
+    this.agenteService.getAgents().subscribe((objRespuesta) => {
+      this.agents = objRespuesta.data;
+    });
   }
 
   ngAfterViewInit(){

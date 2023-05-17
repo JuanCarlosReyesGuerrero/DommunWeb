@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AppService } from 'src/app/app.service';
-import { AppToken } from 'src/app/app.token';
+import { TokenService } from 'src/app/Services/token.service';
+import { AgenteService } from 'src/app/Services/agente.service';
 
 @Component({
   selector: 'app-agents',
@@ -9,17 +9,17 @@ import { AppToken } from 'src/app/app.token';
 })
 
 export class AgentsComponent implements OnInit {
-  public agents;  
+  public agents;
   invalidToken: boolean;
 
-  constructor(public appService: AppService, public appToken: AppToken) { }  
+  constructor(private tokenService: TokenService, private agenteService: AgenteService) { }
 
   ngOnInit() {
-    this.appToken.getToken();
 
-    this.appService.getAgents().subscribe((objRespuesta) => {
+    this.tokenService.getToken();
+
+    this.agenteService.getAgents().subscribe((objRespuesta) => {
       this.agents = objRespuesta.data;
-      //console.log(this.agents);
     });
   }
 }

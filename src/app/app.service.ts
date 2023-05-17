@@ -555,7 +555,7 @@ export class AppService {
 
 
 
-
+/*
   public getAgents(): Observable<any> {
 
     let auth_token = localStorage.getItem("jwt");
@@ -565,12 +565,16 @@ export class AppService {
       'Authorization': 'Bearer ' + auth_token
     });
 
+    console.log(auth_token);
+
     const requestOptions = { headers: headers };
+    console.log(requestOptions)
 
-    return this.http.get('https://localhost:7207/api/Agente/GetAllAgentes', requestOptions);
+    return this.http.get('https://dommunbackend.azurewebsites.net/api/Agente/GetAllAgentes', requestOptions);
   }
+*/
 
-
+/*
   public getAgent(id): Observable<any> {
 
     let auth_token = localStorage.getItem("jwt");
@@ -582,9 +586,9 @@ export class AppService {
 
     const requestOptions = { headers: headers };
 
-    return this.http.get('https://localhost:7207/api/Agente/GetAgente?Id=' + id, requestOptions);
+    return this.http.get('https://dommunbackend.azurewebsites.net/api/Agente/GetAgente?Id=' + id, requestOptions);
   }
-
+*/
 
 
   /*

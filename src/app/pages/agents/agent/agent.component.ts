@@ -11,7 +11,8 @@ import { Settings, AppSettings } from 'src/app/app.settings';
 import { Property, Pagination } from 'src/app/app.models';
 import { emailValidator } from 'src/app/theme/utils/app-validators';
 import { isPlatformBrowser } from '@angular/common';
-import { AppToken } from 'src/app/app.token';
+import { TokenService } from 'src/app/Services/token.service';
+import { AgenteService } from 'src/app/Services/agente.service';
 
 @Component({
   selector: 'app-agent',
@@ -46,7 +47,8 @@ export class AgentComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     public mediaObserver: MediaObserver,
     public fb: UntypedFormBuilder,
-    public appToken: AppToken,
+    private tokenService: TokenService, 
+    private agenteService: AgenteService,
     @Inject(PLATFORM_ID) private platformId: Object) {
     this.settings = this.appSettings.settings;
     this.watcher = mediaObserver.asObservable()
@@ -95,9 +97,9 @@ export class AgentComponent implements OnInit {
 
   public getAgentById(id) {
         
-    this.appToken.getToken();
+    this.tokenService.getToken();
 
-    this.appService.getAgent(id).subscribe((objRespuesta) => {
+    this.agenteService.getAgent(id).subscribe((objRespuesta) => {
       this.agent = objRespuesta.data;      
     });
   }

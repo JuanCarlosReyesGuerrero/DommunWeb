@@ -1,3 +1,4 @@
+/*
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
@@ -20,6 +21,8 @@ export class AppToken {
             'apiKey': 'Yb45&AcJAj4D5n@zE3KF0N%CJF5Owjk0s1*uL%gX!3L2qCT2xw'
         }
 
+        console.log()
+
         this.http.post("https://localhost:7207/api/AuthToken", credentials)
             .subscribe(response => {
                 this.token = (<any>response).token;
@@ -34,3 +37,4 @@ export class AppToken {
 }
 
 
+*/
