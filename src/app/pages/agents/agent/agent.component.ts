@@ -75,7 +75,7 @@ export class AgentComponent implements OnInit {
 
   ngOnInit() {
     this.sub = this.activatedRoute.params.subscribe(params => {
-
+      
       this.agentId = params['id'];
       this.getAgentById(params['id']);
       this.getProperties();
@@ -96,11 +96,12 @@ export class AgentComponent implements OnInit {
   }
 
   public getAgentById(id) {
-        
+     
     this.tokenService.getToken();
-
+    
     this.agenteService.getAgent(id).subscribe((objRespuesta) => {
-      this.agent = objRespuesta.data;      
+      this.agent = objRespuesta.data;  
+      console.log(this.agent );    
     });
   }
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { ResponseApi } from '../Interfaces/response-api';
 import { Token } from '../Interfaces/token';
-import { Agente } from '../Interfaces/agente';
+//import { Agente } from '../Interfaces/agente';
 
 @Injectable({
   providedIn: 'root'
