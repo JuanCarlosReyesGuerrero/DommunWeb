@@ -45,19 +45,19 @@
                   
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Property Type</mat-label> 
+                            <mat-label>Tipo Propiedad</mat-label> 
                             <mat-select placeholder="Select Property Type" formControlName="propertyType" required>
                                 <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                                     {{propertyType.name}}
                                 </mat-option>
                             </mat-select>
-                            <mat-error *ngIf="submitForm.get('basic')['controls'].propertyType.errors?.required">Property Type is required</mat-error>                               
+                            <mat-error *ngIf="submitForm.get('basic')['controls'].propertyType.errors?.required">Tipo Propiedad es requerido</mat-error>                               
                         </mat-form-field>
                       </div>
                   
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Property Status</mat-label>
+                            <mat-label>Estado Propiedad</mat-label>
                             <mat-select placeholder="Select Property Status" formControlName="propertyStatus" multiple>
                                 <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus">
                                     {{propertyStatus.name}}

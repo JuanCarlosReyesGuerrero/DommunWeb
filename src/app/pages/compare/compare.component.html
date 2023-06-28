@@ -48,11 +48,11 @@
                     </mat-chip-list>
                     <div class="details py-3">
                         <div fxLayout="row" class="item">
-                          <span>Property Type:</span>
+                          <span>Tipo Propiedad:</span>
                           <span>{{property.propertyType}}</span>
                         </div> 
                         <div fxLayout="row" class="item">
-                          <span>Property Status:</span>
+                          <span>Estado Propiedad:</span>
                           <div fxLayout="row wrap" class="list">
                             <span *ngFor="let status of property.propertyStatus; let last=last" [class.list-item]="property.propertyStatus.length > 1" [class.last]="last">{{status}}</span>
                           </div>

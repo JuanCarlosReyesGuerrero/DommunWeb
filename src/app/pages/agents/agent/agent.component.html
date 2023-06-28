@@ -46,7 +46,7 @@
             </div>
 
             <p class="uppercase fw-600 text-muted mt-5 mb-0">
-              <span [matBadge]="pagination?.total" matBadgeOverlap="false">Listed Properties</span>
+              <span [matBadge]="pagination?.total" matBadgeOverlap="false">Listar Propiedades</span>
             </p>
 
         </div>
@@ -54,7 +54,7 @@
            
 
             <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
-                <h3 class="uppercase mb-2">Contact Me</h3>
+                <h3 class="uppercase mb-2">Contáctame</h3>
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>Name</mat-label>
                     <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
@@ -80,7 +80,7 @@
                     <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
                 </mat-form-field>  
                 <div class="text-center">
-                    <button mat-raised-button color="accent" type="submit">Send Email</button>
+                    <button mat-raised-button color="accent" type="submit">Enviar Email</button>
                 </div>
             </form>
 
@@ -90,7 +90,7 @@
        
     </mat-card>
 
-    <h3 class="uppercase mt-3">My Listing</h3>
+    <h3 class="uppercase mt-3">Mi Listado</h3>
 
     <mat-sidenav-container class="all-properties mt-3"> 
       <mat-sidenav #sidenav [autoFocus]="false" [opened]="sidenavOpen" [mode]="sidenavOpen ? 'side' : 'over'" class="search-sidenav">         
