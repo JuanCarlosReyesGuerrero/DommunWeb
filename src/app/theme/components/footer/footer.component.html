@@ -42,8 +42,8 @@
                     </div>
 
                     <div fxFlex="100" fxFlex.gt-sm="30" fxFlex.sm="45" ngClass.xs="pt-5"> 
-                        <h2 class="uppercase">Feedback</h2>
-                        <p class="desc">We want your feedback about everything</p>
+                        <h2 class="uppercase">Comentarios</h2>
+                        <p class="desc">Queremos tus comentarios</p>
                         <form [formGroup]="feedbackForm" (ngSubmit)="onFeedbackFormSubmit(feedbackForm.value)" class="custom-form pt-2">                            
                             <mat-form-field appearance="outline" class="w-100">
                                 <mat-label>E-mail</mat-label> 
@@ -52,7 +52,7 @@
                                 <mat-error *ngIf="feedbackForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
                             </mat-form-field>
                             <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>Message for us</mat-label> 
+                                <mat-label>Mensaje para nosotros</mat-label> 
                                 <textarea matInput formControlName="message" rows="6"></textarea> 
                                 <mat-error *ngIf="feedbackForm.controls.message.errors?.required">Message is required</mat-error>
                             </mat-form-field>

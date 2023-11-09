@@ -56,28 +56,28 @@
             <form [formGroup]="contactForm" (ngSubmit)="onContactFormSubmit(contactForm.value)">
                 <h3 class="uppercase mb-2">Contáctame</h3>
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Name</mat-label>
-                    <input matInput placeholder="Your Name" autocomplete="off" formControlName="name">
-                    <mat-error *ngIf="contactForm.controls.name.errors?.required">Name is required</mat-error>                   
+                    <mat-label>Nombre completo</mat-label>
+                    <input matInput placeholder="Nombre completo" autocomplete="off" formControlName="name">
+                    <mat-error *ngIf="contactForm.controls.name.errors?.required">Nombre completo requerido</mat-error>                   
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
                     <mat-label>E-mail</mat-label> 
-                    <input matInput placeholder="Your Email" autocomplete="off" formControlName="email">
-                    <mat-error *ngIf="contactForm.controls.email.errors?.required">Email is required</mat-error>
-                    <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Invalid email address</mat-error>
+                    <input matInput placeholder="Email" autocomplete="off" formControlName="email">
+                    <mat-error *ngIf="contactForm.controls.email.errors?.required">Email es requerido</mat-error>
+                    <mat-error *ngIf="contactForm.controls.email.hasError('invalidEmail')">Dirección de email  inválida</mat-error>
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Phone</mat-label>
+                    <mat-label>Celular</mat-label>
                     <input matInput placeholder="Your Phone" autocomplete="off" formControlName="phone" type="number"> 
-                    <mat-error *ngIf="contactForm.controls.phone.errors?.required">Phone is required</mat-error>                 
+                    <mat-error *ngIf="contactForm.controls.phone.errors?.required">Número de celular es requerido</mat-error>                 
                 </mat-form-field>
 
                 <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Message</mat-label> 
+                    <mat-label>Mensaje</mat-label> 
                     <textarea matInput placeholder="Your Message" formControlName="message" rows="6"></textarea> 
-                    <mat-error *ngIf="contactForm.controls.message.errors?.required">Message is required</mat-error>
+                    <mat-error *ngIf="contactForm.controls.message.errors?.required">El mensaje es requerido</mat-error>
                 </mat-form-field>  
                 <div class="text-center">
                     <button mat-raised-button color="accent" type="submit">Enviar Email</button>
@@ -125,7 +125,7 @@
             <div fxFlex="100" fxLayoutAlign="start start" class="p-2"> 
                 <mat-chip-list [ngClass]="(settings.rtl) ? 'ml-2' : 'mr-2'">
                     <mat-chip selected disableRipple="true" color="warn" class="uppercase ws-nowrap">
-                        {{ pagination?.total }} found
+                        {{ pagination?.total }} encontrados
                     </mat-chip> 
                 </mat-chip-list>
                 <app-properties-search-results-filters 

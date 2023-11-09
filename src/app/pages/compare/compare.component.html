@@ -3,7 +3,7 @@
 
     <div *ngIf="appService.Data.compareList.length == 0" class="py-5">  
       <mat-chip-list>
-          <mat-chip color="warn" selected="true" class="uppercase">You have no properties to compare.</mat-chip>
+          <mat-chip color="warn" selected="true" class="uppercase">No tienes propiedades para comparar.</mat-chip>
       </mat-chip-list>
     </div>
   
@@ -15,8 +15,8 @@
             <button mat-mini-fab color="primary" class="carousel-prev swiper-button-prev swipe-arrow mx-2"><mat-icon>keyboard_arrow_left</mat-icon></button>
             <button mat-mini-fab color="primary" class="carousel-next swiper-button-next swipe-arrow mx-2"><mat-icon>keyboard_arrow_right</mat-icon></button> 
         </div> 
-        <button mat-mini-fab color="warn" fxHide="false" fxHide.gt-xs (click)="clear()"><mat-icon>cancel</mat-icon></button>
-        <button mat-raised-button color="warn" class="uppercase" fxShow="false" fxShow.gt-xs (click)="clear()">Clear All</button>
+        <button mat-mini-fab color="warn" fxHide="false" fxHide.gt-xs (click)="clear()"><mat-icon>Cancelar</mat-icon></button>
+        <button mat-raised-button color="warn" class="uppercase" fxShow="false" fxShow.gt-xs (click)="clear()">Limpiar Todo</button>
       </mat-card>
       
       <div class="swiper-container h-100 carousel-outer mt-3" [swiper]="config"> 
@@ -78,11 +78,11 @@
                             </div>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Bedrooms:</span>
+                          <span>Habitaciones:</span>
                           <span>{{property.bedrooms}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Bathrooms:</span>
+                          <span>Baños:</span>
                           <span>{{property.bathrooms}}</span>
                         </div>
                         <div fxLayout="row" class="item">
@@ -90,7 +90,7 @@
                           <span>{{property.garages}}</span>
                         </div>
                         <div fxLayout="row" class="item">
-                          <span>Property size:</span>
+                          <span>Tamaño de la propiedad:</span>
                           <span>{{property.area.value}} {{property.area.unit}}</span>
                         </div>
                         <div fxLayout="row" class="item">

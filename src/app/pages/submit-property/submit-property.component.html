@@ -32,21 +32,21 @@
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Price ($)</mat-label>
-                            <input matInput placeholder="Enter sale or rent price" formControlName="priceDollar" autocomplete="off"> 
+                            <input matInput placeholder="Ingrese el precio de venta o alquiler" formControlName="priceDollar" autocomplete="off"> 
                         </mat-form-field>
                       </div> 
                   
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Price (€)</mat-label>
-                            <input matInput placeholder="Enter sale or rent price" formControlName="priceEuro" autocomplete="off"> 
+                            <input matInput placeholder="Ingrese el precio de venta o alquiler" formControlName="priceEuro" autocomplete="off"> 
                         </mat-form-field>
                       </div> 
                   
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Tipo Propiedad</mat-label> 
-                            <mat-select placeholder="Select Property Type" formControlName="propertyType" required>
+                            <mat-select placeholder="Seleccione el tipo de propiedad" formControlName="propertyType" required>
                                 <mat-option *ngFor="let propertyType of propertyTypes" [value]="propertyType">
                                     {{propertyType.name}}
                                 </mat-option>
@@ -58,7 +58,7 @@
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
                             <mat-label>Estado Propiedad</mat-label>
-                            <mat-select placeholder="Select Property Status" formControlName="propertyStatus" multiple>
+                            <mat-select placeholder="Seleccione el estado de la propiedad" formControlName="propertyStatus" multiple>
                                 <mat-option *ngFor="let propertyStatus of propertyStatuses" [value]="propertyStatus">
                                     {{propertyStatus.name}}
                                 </mat-option>
@@ -112,8 +112,8 @@
                     
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>City</mat-label>
-                            <mat-select placeholder="Select City..." formControlName="city" (selectionChange)="onSelectCity()" required> 
+                            <mat-label>Ciudad</mat-label>
+                            <mat-select placeholder="Seleccione la ciudad..." formControlName="city" (selectionChange)="onSelectCity()" required> 
                               <mat-option *ngFor="let city of cities" [value]="city">
                                 {{city.name}}
                               </mat-option>
@@ -131,8 +131,8 @@
                     
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
-                          <mat-label>Neighborhood</mat-label>
-                          <mat-select placeholder="Select Neighborhood..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
+                          <mat-label>Barrio</mat-label>
+                          <mat-select placeholder="Seleccione el barrio..." formControlName="neighborhood" multiple (selectionChange)="onSelectNeighborhood()">
                             <mat-option *ngFor="let neighborhood of neighborhoods | filterNeighborhoods: submitForm.get('address')['controls'].city.value?.id" [value]="neighborhood">
                               {{neighborhood.name}}
                             </mat-option>
@@ -142,8 +142,8 @@
                     
                       <div fxFlex="100" fxFlex.gt-xs="50" class="px-2">
                         <mat-form-field appearance="outline" class="w-100">
-                          <mat-label>Street</mat-label>
-                          <mat-select placeholder="Select Street..." formControlName="street" multiple> 
+                          <mat-label>Calle</mat-label>
+                          <mat-select placeholder="Seleccione la calle..." formControlName="street" multiple> 
                             <mat-option *ngFor="let street of streets | filterStreets : { neighborhoods: submitForm.get('address')['controls'].neighborhood.value?.id, cityId:submitForm.get('address')['controls'].city.value?.id } " [value]="street">
                               {{street.name}}
                             </mat-option>
@@ -178,15 +178,15 @@
                   
                       <div fxFlex="100" fxFlex.gt-xs="33.3" class="px-2">
                           <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Bedrooms</mat-label>
-                            <input matInput placeholder="bedrooms" autocomplete="off" formControlName="bedrooms" onlyNumber maxlength="2">                  
+                            <mat-label>Habitaciones</mat-label>
+                            <input matInput placeholder="habitaciones" autocomplete="off" formControlName="bedrooms" onlyNumber maxlength="2">                  
                           </mat-form-field>
                       </div>
                   
                       <div fxFlex="100" fxFlex.gt-xs="33.3" class="px-2">
                           <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Bathrooms</mat-label>
-                            <input matInput placeholder="bathrooms" autocomplete="off" formControlName="bathrooms" onlyNumber maxlength="2">                  
+                            <mat-label>Baños</mat-label>
+                            <input matInput placeholder="baños" autocomplete="off" formControlName="bathrooms" onlyNumber maxlength="2">                  
                           </mat-form-field>
                       </div>
                   
