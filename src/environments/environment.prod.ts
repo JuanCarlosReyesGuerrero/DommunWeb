@@ -1,5 +1,5 @@
 export const environment = {
-  production: true,
+  production: false,
   url: '',
   endpoint:"https://dommunbackend.azurewebsites.net/api/",
   credentialsKey: 'Yh2k7QSu4l8CZg5p6X3Pna9L0Miy4D3Bvt0JVr87UcOj69Kqw5R2Nmf4FWs03Hdx',
